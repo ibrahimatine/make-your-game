@@ -1,12 +1,13 @@
-.game-container {
+/* #game-container {
     position: relative;
     width: 400px;
     height: 300px;
     border: 1px solid #000;
 }
 
-.ball,
 .paddle,
 .brick {
     position: absolute;
-}
+
+} */
+
