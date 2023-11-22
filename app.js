@@ -1,4 +1,4 @@
-// const gameContainer = document.querySelector('#game-container'); 
+const gameContainer = document.querySelector('#game-container'); 
 
 // function allBricks (nbr){
 //     for (let i = 0; i < nbr; i++) {
@@ -9,4 +9,6 @@
 // }
 
 // allBricks(100);
+
+const movePaddle ();
 

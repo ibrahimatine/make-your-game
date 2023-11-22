@@ -1,13 +1,27 @@
-/* #game-container {
-    position: relative;
+#game-container {
+    position:absolute;
     width: 400px;
     height: 300px;
     border: 1px solid #000;
+    top:50%;
+    left:50%;
+
+    transform: translate(-50%,-50%);
+    
 }
 
-.paddle,
+#paddle{
+    position: absolute;
+    width: 120px;
+    height: 15px;
+    background-color: blue;
+    bottom: 0%;
+}
 .brick {
     position: absolute;
 
-} */
+    width: 10px;
+    height: 10px;
 
+
+}
