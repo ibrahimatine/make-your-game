@@ -35,7 +35,7 @@ const paddle =  document.createElement('div');
 
 
 
-
+ok
 
 
     // function allBricks (nbr){
