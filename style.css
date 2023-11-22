@@ -11,11 +11,7 @@
 }
 
 #paddle{
-    position: absolute;
-    width: 120px;
-    height: 15px;
-    background-color: blue;
-    bottom: 0%;
+    
 }
 .brick {
     position: absolute;
