@@ -1,5 +1,5 @@
 conteneur = document.querySelector('#game-container')
-let conDim = conteneur.getBoundingClientRect();
+let dimensionRec = conteneur.getBoundingClientRect();
 
 const gameover = document.createElement('div');
 gameover.textContent = "Start Game";
@@ -58,7 +58,7 @@ function startGame() {
         player.score = 0;
         player.lives = 3;
         ball.style.display = "block";
-        //
+        setupBricks(10);
         scoreUpdater();
         window.requestAnimationFrame(deplace);
 
@@ -67,14 +67,14 @@ function startGame() {
 
 function setupBricks(nbr){
     let rang= {
-        x:((conDim.width % 100)/2),
+        x:((dimensionRec.width % 100)/2),
         y:50
     }
     for ( let x=0;x<nbr;nbr++) {
         console.log(rang);
-        if (rang.x >(conDim.width-100)) {
+        if (rang.x >(dimensionRec.width-100)) {
             rang.y += 50;
-            rang.x = ((conDim.width % 100)/2);
+            rang.x = ((dimensionRec.width % 100)/2);
         }
         rang.count =x;
         createbrick(rang); 
