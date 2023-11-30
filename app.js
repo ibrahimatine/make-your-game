@@ -1,11 +1,10 @@
-conteneur = document.querySelector("#game-container");
+const conteneur = document.querySelector("#game-container");
 let dimensionRec = conteneur.getBoundingClientRect();
 
 const gameover = document.createElement("div");
 gameover.textContent = "Start Game";
 gameover.style.position = "absolute";
 gameover.style.color = "black";
-gameover.style.fontSize = "20px";
 gameover.style.textAlign = "center";
 gameover.style.width = "100%";
 gameover.style.backgroundColor = "none";
@@ -37,13 +36,11 @@ paddle.style.transform = "translateX(-50%)";
 conteneur.appendChild(paddle);
 
 document.addEventListener("keydown", function (e) {
-  // console.log(e.keyCode);
   if (e.keyCode === 37) paddle.left = true;
   if (e.keyCode === 39) paddle.right = true;
 });
 
 document.addEventListener("keyup", function (e) {
-  // console.log(e.keyCode);
   if (e.keyCode === 37) paddle.left = false;
   if (e.keyCode === 39) paddle.right = false;
 });
@@ -52,16 +49,14 @@ const player = {
   gameover: true,
 };
 
-// demarer le game
 function startGame() {
-  console.log("start");
   if (player.gameover) {
     player.gameover = false;
     gameover.style.display = "none";
     player.score = 0;
     player.lives = 3;
     ball.style.display = "block";
-    player.ballDir = [5, 5];
+    player.ballDir = [5,5];
     setupBricks(100);
     scoreUpdater();
     window.requestAnimationFrame(deplace);
@@ -75,7 +70,6 @@ function setupBricks(nbr) {
   };
   let saut = false;
   for (let x = 0; x < nbr; x++) {
-    //  console.log(rang);
     if (rang.x > dimensionRec.width - 100) {
       rang.y += 50;
       if (rang.y > dimensionRec.height / 2) {
@@ -93,10 +87,12 @@ function setupBricks(nbr) {
 
 function createbrick(pos) {
   const div = document.createElement('div');
-  div.setAttribute('class', 'brick');
+  div.classList.add('brick');
 
   div.style.backgroundColor = "brown";
-  // div.textContent= pos.count;
+  div.style.width = "90px";
+  div.style.height = "40px";
+  div.style.position = "absolute";
   div.style.left = pos.x + "px";
   div.style.top = pos.y + "px";
 
@@ -114,24 +110,24 @@ function collision(elem1, elem2) {
     elem1Rect.top > elem2Rect.bottom
   );
 }
+
 function scoreUpdater() {
   document.querySelector(".score").textContent = player.score;
   document.querySelector(".lives").textContent = player.lives;
 }
 
-// cette fonction permet de déplacer le paddle
 function deplace() {
-  let positon = paddle.offsetLeft;
+  let position = paddle.offsetLeft;
   moveBall();
-  // console.log(positon);
-  if (paddle.left) {
-    positon -= 5;
+
+  if (paddle.left && position > 0) { 
+    position -= 5;
   }
-  if (paddle.right) {
-    positon += 5;
+  if (paddle.right && position < dimensionRec.width - paddle.offsetWidth) { 
+    position += 5;
   }
 
-  paddle.style.left = positon + "px";
+  paddle.style.left = position + "px";
   window.requestAnimationFrame(deplace);
 }
 
@@ -147,25 +143,27 @@ function moveBall() {
     player.ballDir[0] *= -1;
   }
   if (collision(paddle, ball)) {
-    // console.log("lale");
     let temp = ((posBall.x - paddle.offsetLeft) - (paddle.offsetWidth / 2)) / 10;
     player.ballDir[0] = temp;
     player.ballDir[1] *= -1;
   }
 
-  posBall.x += player.ballDir[0];
-  posBall.y += player.ballDir[1];
+  posBall.x += player.ballDir[0]*0.7;
+  posBall.y += player.ballDir[1]*0.7;
 
   ball.style.left = posBall.x + "px";
   ball.style.top = posBall.y + "px";
-}
 
-let briks = document.querySelectorAll('.brick');
-for (let tbrick of briks) {
-  if (collision(tbrick, ball)) {
-    player.ballDir[1] *= -1;
-    tbrick.parentNode.removeChild(tbrick);
-    player.score += 1;
-    scoreUpdater();
-  }
+  let bricks = document.querySelectorAll('.brick');
+  bricks.forEach(brick => {
+    if (collision(brick, ball)) {
+      player.ballDir[1] *= -1;
+      brick.parentNode.removeChild(brick);
+      player.score += 1;
+      scoreUpdater();
+    }
+  });
+
+  window.requestAnimationFrame(moveBall);
 }
+ 
