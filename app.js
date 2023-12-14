@@ -108,7 +108,7 @@ function setupBricks(nbr) {
   };
 
   for (let x = 0; x < nbr; x++) {
-    if (rang.x > dimensionRec.width - 100) {
+    if (rang.x > dimensionRec.width - 10) {
       rang.y += 50;
       rang.x = 10;
     }
@@ -123,7 +123,7 @@ function createBrick(pos) {
   brick.classList.add("brick");
 
   brick.style.backgroundColor = "brown";
-  brick.style.width = "90px";
+  brick.style.width = "80px";
   brick.style.height = "40px";
   brick.style.position = "absolute";
   brick.style.left = pos.x + "px";
@@ -231,65 +231,19 @@ function moveBall() {
     gameover.style.display = "block";
   }
 }
-// ... (Le code précédent reste le même)
 
-// ... (Le code précédent reste le même)
 
 document.body.appendChild(conteneur);
 
-// Création des éléments pour afficher le score et les vies
-const scoreDisplay = document.createElement("div");
-scoreDisplay.textContent = "Score: ";
-scoreDisplay.classList.add("score");
-scoreDisplay.style.position = "absolute";
-scoreDisplay.style.top = "10px";
-scoreDisplay.style.left = "10px";
-scoreDisplay.style.color = "black";
-conteneur.appendChild(scoreDisplay);
-
-const livesDisplay = document.createElement("div");
-livesDisplay.textContent = "Lives: ";
-livesDisplay.classList.add("lives");
-livesDisplay.style.position = "absolute";
-livesDisplay.style.top = "10px";
-livesDisplay.style.right = "10px";
-livesDisplay.style.color = "black";
-conteneur.appendChild(livesDisplay);
 
 // Appeler la fonction pour démarrer le jeu au chargement de la page
 startGame();
 
-// Écouter l'événement de redimensionnement de la fenêtre pour mettre à jour les dimensions du conteneur
-window.addEventListener("resize", () => {
-  dimensionRec = conteneur.getBoundingClientRect();
-});
 
-// Réinitialiser le jeu lorsque l'utilisateur clique sur l'écran (utile si le jeu est sur mobile)
 conteneur.addEventListener("click", () => {
   if (player.gameover) {
     restartGame();
   }
 });
 
-// Fonction pour détecter la fin du jeu et afficher un message approprié
-function endGame() {
-  const endMessage = document.createElement("div");
-  endMessage.textContent = "Game Over!";
-  endMessage.style.position = "absolute";
-  endMessage.style.top = "50%";
-  endMessage.style.left = "50%";
-  endMessage.style.transform = "translate(-50%, -50%)";
-  endMessage.style.fontSize = "3em";
-  endMessage.style.color = "red";
-  conteneur.appendChild(endMessage);
-}
 
-// Mettre à jour le décompte des vies
-function updateLivesDisplay() {
-  livesDisplay.textContent = `Lives: ${player.lives}`;
-}
-
-// Mettre à jour le décompte du score
-function updateScoreDisplay() {
-  scoreDisplay.textContent = `Score: ${player.score}`;
-}
