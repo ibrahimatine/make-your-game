@@ -1,6 +1,5 @@
 const conteneur = document.querySelector("#game-container");
 let dimensionRec = conteneur.getBoundingClientRect();
-
 const gameover = document.createElement("div");
 gameover.textContent = "Start Game";
 gameover.style.position = "absolute";
@@ -13,19 +12,15 @@ gameover.style.fontSize = "3em";
 gameover.style.display = "block";
 gameover.style.top = "50%";
 gameover.style.transform = "translateY(-50%)";
-
 // Fonction pour démarrer le jeu quand la touche Espace est enfoncée
 function checkStartGame(event) {
   if (event.code === "Space") {
     startGame();
   }
 }
-
 // Ajoute l'événement pour écouter la touche Espace
 document.addEventListener("keydown", checkStartGame);
-
 conteneur.appendChild(gameover);
-
 const ball = document.createElement("div");
 ball.style.position = "absolute";
 ball.style.width = "20px";
@@ -34,7 +29,6 @@ ball.style.backgroundColor = "black";
 ball.style.borderRadius = "50%";
 ball.style.display = "none";
 conteneur.appendChild(ball);
-
 const paddle = document.createElement("div");
 paddle.style.position = "absolute";
 paddle.style.width = "100px";
@@ -45,17 +39,14 @@ paddle.style.bottom = "0px";
 paddle.style.left = "50%";
 paddle.style.transform = "translateX(-50%)";
 conteneur.appendChild(paddle);
-
 let paddleMovement = {
   left: false,
   right: false,
 };
-
 const keyMap = {
   ArrowLeft: "left",
   ArrowRight: "right",
 };
-
 // Fonction pour gérer l'événement de pression des touches
 function keyDown(event) {
   const key = keyMap[event.key];
@@ -65,7 +56,6 @@ function keyDown(event) {
     paddleMovement.right = true;
   }
 }
-
 // Fonction pour gérer l'événement de relâchement des touches
 function keyUp(event) {
   const key = keyMap[event.key];
@@ -75,18 +65,15 @@ function keyUp(event) {
     paddleMovement.right = false;
   }
 }
-
 // Ajout des écouteurs d'événements optimisés
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
-
 const player = {
   gameover: true,
   score: 0,
   lives: 3,
   ballDir: { x: 5, y: 5 },
 };
-
 function startGame() {
   if (player.gameover) {
     player.gameover = false;
@@ -94,48 +81,50 @@ function startGame() {
     player.score = 0;
     player.lives = 3;
     ball.style.display = "block";
-    player.ballDir = { x: 5, y: -5 }; // Change initial ball direction
+    const paddleRect = paddle.getBoundingClientRect();
+    const paddleWidth = paddleRect.width;
+    const paddlePosition = paddleRect.left;
+    const paddleHeight = paddleRect.height;
+    const ballSize = 20; // Taille de la balle
+    
+    ball.style.display = "block";
+    ball.style.left = `${paddlePosition + (paddleWidth / 2) - (ballSize / 2)}px`;
+    ball.style.top = `${paddle.offsetTop - ballSize}px`;
+    
+    player.ballDir = { x: 2, y: -2 }; // Change initial ball direction
     setupBricks(30); // Adjust number of bricks as per your preference
     scoreUpdater();
     window.requestAnimationFrame(moveBall);
   }
 }
-
 function setupBricks(nbr) {
   let rang = {
     x: 10,
     y: 50,
   };
-
   for (let x = 0; x < nbr; x++) {
-    if (rang.x > dimensionRec.width - 100) {
+    if (rang.x > dimensionRec.width - 10) {
       rang.y += 50;
       rang.x = 10;
     }
-
     createBrick(rang);
     rang.x += 100;
   }
 }
-
 function createBrick(pos) {
   const brick = document.createElement("div");
   brick.classList.add("brick");
-
   brick.style.backgroundColor = "brown";
-  brick.style.width = "90px";
+  brick.style.width = "80px";
   brick.style.height = "40px";
   brick.style.position = "absolute";
   brick.style.left = pos.x + "px";
   brick.style.top = pos.y + "px";
-
   conteneur.appendChild(brick);
 }
-
 function collision(elem1, elem2) {
   const elem1Rect = elem1.getBoundingClientRect();
   const elem2Rect = elem2.getBoundingClientRect();
-
   return !(
     elem1Rect.right < elem2Rect.left ||
     elem1Rect.left > elem2Rect.right ||
@@ -143,21 +132,17 @@ function collision(elem1, elem2) {
     elem1Rect.top > elem2Rect.bottom
   );
 }
-
 function scoreUpdater() {
   document.querySelector(".score").textContent = player.score;
   document.querySelector(".lives").textContent = player.lives;
 }
-
 function moveBall() {
   const posBall = {
     x: ball.offsetLeft,
     y: ball.offsetTop,
   };
-
   const ballWidth = 20;
   const ballHeight = 20;
-
   if (posBall.y < 0) {
     player.ballDir.y *= -1;
   }
@@ -166,20 +151,22 @@ function moveBall() {
   }
   if (posBall.y > dimensionRec.height - ballHeight) {
     player.lives--;
-
     if (player.lives <= 0) {
       player.gameover = true;
       gameover.style.display = "block";
-      gameover.textContent = "Game Over. Press Space to Restart";
       return;
     } else {
       // Reset ball position and direction for next life
       ball.style.display = "none";
-      posBall.x = dimensionRec.width / 2;
-      posBall.y = dimensionRec.height / 2;
-      player.ballDir = { x: 5, y: -5 }; // Change ball direction for next life
-      ball.style.left = posBall.x + "px";
-      ball.style.top = posBall.y + "px";
+      const paddleRect = paddle.getBoundingClientRect();
+      const paddleWidth = paddleRect.width;
+      const paddlePosition = paddleRect.left;
+      const paddleHeight = paddleRect.height;
+      const ballSize = 20; // Taille de la balle
+      
+      ball.style.display = "block";
+      ball.style.left = `${paddlePosition + (paddleWidth / 2) - (ballSize / 2)}px`;
+      ball.style.top = `${paddle.offsetTop - ballSize}px`;
       setTimeout(() => {
         ball.style.display = "block";
         window.requestAnimationFrame(moveBall);
@@ -187,19 +174,15 @@ function moveBall() {
       return;
     }
   }
-
   if (collision(paddle, ball)) {
     const temp = (posBall.x - paddle.offsetLeft - paddle.offsetWidth / 2) / 10;
     player.ballDir.x = temp;
     player.ballDir.y *= -1;
   }
-
   posBall.x += player.ballDir.x;
   posBall.y += player.ballDir.y;
-
   ball.style.left = posBall.x + "px";
   ball.style.top = posBall.y + "px";
-
   const bricks = document.querySelectorAll(".brick");
   bricks.forEach((brick) => {
     if (collision(brick, ball)) {
@@ -209,11 +192,9 @@ function moveBall() {
       scoreUpdater();
     }
   });
-
   let position = paddle.offsetLeft;
   const paddleWidth = paddle.offsetWidth;
   const paddleMoveSpeed = 10;
-
   if (paddleMovement.left && position > 0) {
     position = Math.max(0, position - paddleMoveSpeed);
   }
@@ -223,37 +204,18 @@ function moveBall() {
       position + paddleMoveSpeed
     );
   }
-
   paddle.style.left = position + "px";
-
   if (!player.gameover) {
     window.requestAnimationFrame(moveBall);
   } else {
     gameover.style.display = "block";
   }
 }
-// ... (Le code précédent reste le même)
-
 document.body.appendChild(conteneur);
-
-// Création des éléments pour afficher le score et les vies
-const scoreDisplay = document.createElement("div");
-scoreDisplay.textContent = "Score: ";
-scoreDisplay.classList.add("score");
-scoreDisplay.style.position = "absolute";
-scoreDisplay.style.top = "10px";
-scoreDisplay.style.left = "10px";
-scoreDisplay.style.color = "black";
-conteneur.appendChild(scoreDisplay);
-
-const livesDisplay = document.createElement("div");
-livesDisplay.textContent = "Lives: ";
-livesDisplay.classList.add("lives");
-livesDisplay.style.position = "absolute";
-livesDisplay.style.top = "10px";
-livesDisplay.style.right = "10px";
-livesDisplay.style.color = "black";
-conteneur.appendChild(livesDisplay);
-
 // Appeler la fonction pour démarrer le jeu au chargement de la page
 startGame();
+conteneur.addEventListener("click", () => {
+  if (player.gameover) {
+    restartGame();
+  }
+});
