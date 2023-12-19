@@ -29,6 +29,7 @@ ball.style.backgroundColor = "black";
 ball.style.borderRadius = "50%";
 ball.style.display = "none";
 conteneur.appendChild(ball);
+
 const paddle = document.createElement("div");
 paddle.style.position = "absolute";
 paddle.style.width = "100px";

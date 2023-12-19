@@ -1,14 +1,16 @@
 const conteneur = document.querySelector("#game-container");
 let dimensionRec = conteneur.getBoundingClientRect();
 const gameover = document.createElement("div");
-gameover.textContent = "Start Game";
+gameover.textContent = "Press space to Start Game";
 gameover.style.position = "absolute";
-gameover.style.color = "black";
+gameover.style.color = "yellow";
 gameover.style.textAlign = "center";
 gameover.style.width = "100%";
 gameover.style.backgroundColor = "none";
 gameover.style.textTransform = "uppercase";
 gameover.style.fontSize = "3em";
+conteneur.appendChild(gameover);
+
 // Fonction pour démarrer le jeu quand la touche Espace est enfoncée
 function checkStartGame(event) {
   if (event.code === "Space") {
@@ -17,12 +19,11 @@ function checkStartGame(event) {
 }
 // Ajoute l'événement pour écouter la touche Espace
 document.addEventListener("keydown", checkStartGame);
-conteneur.appendChild(gameover);
 const ball = document.createElement("div");
 ball.style.position = "absolute";
 ball.style.width = "20px";
 ball.style.height = "20px";
-ball.style.backgroundColor = "black";
+ball.style.backgroundColor = "white";
 ball.style.borderRadius = "50%";
 ball.style.display = "none";
 ball.style.top = "70%";
@@ -66,6 +67,7 @@ function keyUp(event) {
     paddleMovement.right = false;
   }
 }
+
 // Ajout des écouteurs d'événements optimisés
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
@@ -75,19 +77,21 @@ const player = {
   lives: 3,
   ballDir: { x: 5, y: 5 },
 };
+
 function startGame() {
   if (player.gameover) {
     player.gameover = false;
     gameover.style.display = "none";
     player.score = 0;
-    player.lives = 2;
+    player.lives = 3;
     ball.style.display = "block";
     player.ballDir = { x: 5, y: 5 };
-    setupBricks(100);
+    setupBricks(0);
     scoreUpdater();
     window.requestAnimationFrame(moveBall);
   }
 }
+
 function setupBricks(nbr) {
   const brickWidth = 50;
   const brickHeight = 30;
@@ -135,10 +139,7 @@ function scoreUpdater() {
   document.querySelector(".score").textContent = player.score;
   document.querySelector(".lives").textContent = player.lives;
 }
-function restartGame() {
-  player.gameover = true;
-  startGame();
-}
+
 function moveBall() {
   const posBall = {
     x: ball.offsetLeft,
@@ -150,53 +151,40 @@ function moveBall() {
   
   if (posBall.y > dimensionRec.height - ballHeight || posBall.y < 0) {
     player.ballDir.y *= -1;
+    
   }
   if (posBall.x > dimensionRec.width - ballWidth || posBall.x < 0) {
     player.ballDir.x *= -1;
   }
   if (posBall.y > dimensionRec.height - ballHeight) {
-    player.lives--;
-    if (player.lives <= 0) {
-      player.gameover = true;
-      gameover.style.display = "block";
+    handleBallOutOfBounds();
       return;
-    } else {
-      // Reset ball position and direction for next life
-      ball.style.display = "none";
-      posBall.x = dimensionRec.width / 2;
-      posBall.y = dimensionRec.height / 2;
-      player.ballDir = { x: 5, y: 5 };
-      ball.style.left = posBall.x + "px";
-      ball.style.top = posBall.y + "px";
-      setTimeout(() => {
-        ball.style.display = "block";
-        window.requestAnimationFrame(moveBall);
-      }, 1000); // Delay before starting next life
-      return;
-    }
+    
   }
   
-  if (collision(paddle, ball)) {
-    const temp = ((posBall.x - paddle.offsetLeft) - (paddle.offsetWidth / 2)) / 10;
-    player.ballDir.x = temp;
-    player.ballDir.y *= -1;
-  }
+  // if (collision(paddle, ball)) {
+  //   const temp = ((posBall.x - paddle.offsetLeft) - (paddle.offsetWidth / 2)) / 10;
+  //   player.ballDir.x = temp;
+  //   player.ballDir.y *= -1;
+  // }
+
+  handlePaddleCollision(posBall);
+  handleBrickCollision(posBall);
+
+  // const bricks = document.querySelectorAll('.brick');
+  // bricks.forEach(brick => {
+  //   if (collision(brick, ball)) {
+  //     player.ballDir.y *= -1;
+  //     brick.parentNode.removeChild(brick);
+  //     player.score += 1;
+  //     scoreUpdater();
+  //   }
+  // });
+
   posBall.x += player.ballDir.x ;
   posBall.y += player.ballDir.y;
   ball.style.left = posBall.x + "px";
   ball.style.top = posBall.y + "px";
-
-
-  const bricks = document.querySelectorAll('.brick');
-  bricks.forEach(brick => {
-    if (collision(brick, ball)) {
-      player.ballDir.y *= -1;
-      brick.parentNode.removeChild(brick);
-      player.score += 10;
-      scoreUpdater();
-    }
-  });
-
 
   let position = paddle.offsetLeft;
   const paddleWidth = paddle.offsetWidth;
@@ -214,4 +202,45 @@ function moveBall() {
     gameover.style.display = "block";
   }
 }
-//startGame();
+
+function handleBallOutOfBounds() {
+  player.lives--;
+  if (player.lives <= 0) {
+    player.gameover = true;
+    gameover.style.display = "block";
+  } else {
+    resetBallPosition();
+    setTimeout(() => {
+      ball.style.display = "block";
+      window.requestAnimationFrame(moveBall);
+    }, 1000);
+  }
+}
+
+function resetBallPosition() {
+  ball.style.display = "none";
+  const posBall = { x: dimensionRec.width / 2, y: dimensionRec.height / 2 };
+  ball.style.left = posBall.x + "px";
+  ball.style.top = posBall.y + "px";
+  player.ballDir = { x: 5, y: -5 };
+}
+
+function handleBrickCollision(posBall) {
+  const bricks = document.querySelectorAll(".brick");
+  bricks.forEach((brick) => {
+    if (collision(brick, ball)) {
+      player.ballDir.y *= -1;
+      brick.parentNode.removeChild(brick);
+      player.score += 1;
+      scoreUpdater();
+    }
+  });
+}
+
+function handlePaddleCollision(posBall) {
+  if (collision(paddle, ball)) {
+    const temp = (posBall.x - paddle.offsetLeft - paddle.offsetWidth / 2) / 10;
+    player.ballDir.x = temp;
+    player.ballDir.y *= -1;
+  }
+}
