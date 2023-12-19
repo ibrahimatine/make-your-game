@@ -84,8 +84,8 @@ function startGame() {
     gameover.style.display = "none";
     player.score = 0;
     player.lives = 3;
-    setupPaddle();
-    player.ballDir = { x: 5, y: -5 };
+    ball.style.display = "block";
+    player.ballDir = { x: 5, y: 5 };
     setupBricks(0);
     scoreUpdater();
     window.requestAnimationFrame(moveBall);
@@ -229,15 +229,3 @@ function handlePaddleCollision(posBall) {
   }
 }
 
-function setupPaddle() {
-  const paddleWidth = 100;
-  const paddleHeight = 20;
-  paddle.style.left = `${(dimensionRec.width - paddleWidth) / 2}px`;
-  paddle.style.bottom = `${paddleHeight}px`;
-  // Positionner la balle au-dessus du paddle
-  const ballDiameter = 20;
-  const ballLeft = parseFloat(paddle.style.left) + (paddleWidth - ballDiameter) / 2;
-  const ballTop = parseFloat(paddle.style.bottom) + ballDiameter; // ou '20px' pour aligner avec le haut du paddle
-  ball.style.left = `${ballLeft}px`;
-  ball.style.top = `${ballTop}px`;
-}
