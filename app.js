@@ -84,8 +84,8 @@ function startGame() {
     gameover.style.display = "none";
     player.score = 0;
     player.lives = 3;
-    ball.style.display = "block";
-    player.ballDir = { x: 5, y: 5 };
+    setupPaddle();
+    player.ballDir = { x: 5, y: -5 };
     setupBricks(0);
     scoreUpdater();
     window.requestAnimationFrame(moveBall);
@@ -95,22 +95,21 @@ function startGame() {
 function setupBricks(nbr) {
   const brickWidth = 50;
   const brickHeight = 30;
-  const horizontalSpace = 10; // Espacement horizontal entre les briques
-  const verticalSpace = 10; // Espacement vertical entre les briques
+  const horizontalSpace = 10;
+  const verticalSpace = 10; 
 
-  let rows = Math.floor((dimensionRec.height / 2) / (brickHeight + verticalSpace)); // Nombre de rangées de briques
-  let cols = Math.floor(dimensionRec.width / (brickWidth + horizontalSpace)); // Nombre de colonnes de briques
-
-  let brickPosY = verticalSpace; // Position verticale initiale
+  let rows = Math.floor((dimensionRec.height / 2) / (brickHeight + verticalSpace)); 
+  let cols = Math.floor(dimensionRec.width / (brickWidth + horizontalSpace)); 
+  let brickPosY = verticalSpace;
   for (let y = 0; y < rows; y++) {
-    let brickPosX = (dimensionRec.width - cols * (brickWidth + horizontalSpace)) / 2; // Position horizontale initiale
+    let brickPosX = (dimensionRec.width - cols * (brickWidth + horizontalSpace)) / 2; 
 
     for (let x = 0; x < cols; x++) {
       createBrick({ x: brickPosX, y: brickPosY });
-      brickPosX += brickWidth + horizontalSpace; // Mise à jour de la position horizontale pour la prochaine brique
+      brickPosX += brickWidth + horizontalSpace; 
     }
 
-    brickPosY += brickHeight + verticalSpace; // Mise à jour de la position verticale pour la prochaine rangée de briques
+    brickPosY += brickHeight + verticalSpace;
   }
 }
 
@@ -161,25 +160,10 @@ function moveBall() {
       return;
     
   }
-  
-  // if (collision(paddle, ball)) {
-  //   const temp = ((posBall.x - paddle.offsetLeft) - (paddle.offsetWidth / 2)) / 10;
-  //   player.ballDir.x = temp;
-  //   player.ballDir.y *= -1;
-  // }
+
 
   handlePaddleCollision(posBall);
   handleBrickCollision(posBall);
-
-  // const bricks = document.querySelectorAll('.brick');
-  // bricks.forEach(brick => {
-  //   if (collision(brick, ball)) {
-  //     player.ballDir.y *= -1;
-  //     brick.parentNode.removeChild(brick);
-  //     player.score += 1;
-  //     scoreUpdater();
-  //   }
-  // });
 
   posBall.x += player.ballDir.x ;
   posBall.y += player.ballDir.y;
@@ -243,4 +227,17 @@ function handlePaddleCollision(posBall) {
     player.ballDir.x = temp;
     player.ballDir.y *= -1;
   }
+}
+
+function setupPaddle() {
+  const paddleWidth = 100;
+  const paddleHeight = 20;
+  paddle.style.left = `${(dimensionRec.width - paddleWidth) / 2}px`;
+  paddle.style.bottom = `${paddleHeight}px`;
+  // Positionner la balle au-dessus du paddle
+  const ballDiameter = 20;
+  const ballLeft = parseFloat(paddle.style.left) + (paddleWidth - ballDiameter) / 2;
+  const ballTop = parseFloat(paddle.style.bottom) + ballDiameter; // ou '20px' pour aligner avec le haut du paddle
+  ball.style.left = `${ballLeft}px`;
+  ball.style.top = `${ballTop}px`;
 }
