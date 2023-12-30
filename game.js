@@ -46,10 +46,6 @@ let heartPoints = 0
 let timePoints = 0
 let finalscore = 0
 
-
-
-
-
 function togglePause() {
   if (!paused) {
     pausediv.style.display = "flex";
@@ -81,7 +77,6 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-
 //title screen
 
 function enterGame(title) {
@@ -94,17 +89,9 @@ function enterGame(title) {
     window.removeEventListener("keydown", enterGame)
 
   }
-
-
 }
 
-
 window.addEventListener("keydown", enterGame)
-
-
-
-
-
 
 //behaves funky within the game loop, frames stable nevertheless
 drawBricks();
