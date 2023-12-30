@@ -1,24 +1,74 @@
+<!-- file is called index.html as the server automatically looks for an index.html
+page. You can use a different file name, however, you would have to make sure to include
+the file name in every url. 
+-->
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="data:;base64,=" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Bricks</title>
+    <script src="game.js" defer type="module"></script>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Our GAME</title>
-</head>
+  <body>
+    <div class="title-screen">
+      <br />
+      <h1 id="title" style="text-align: center; z-index: 1">BRICK</h1>
+      <h1 id="title" style="text-align: center; z-index: 1">BREAKER!</h1>
+      <br />
+      <br />
 
-<body>
-    
-    
-    <div id="game-container"></div>
-    <div id="status">
-        Score: <span class="score"></span>
-        Lives: <span class="lives"></span>
+      <br />
+      <p id="title" style="text-align: center; z-index: 1">
+        <u>Instructions</u>
+      </p>
+
+      <p id="title" style="text-align: center; z-index: 1">Enter to Start</p>
+      <p id="title" style="text-align: center; z-index: 1">Space to Play</p>
+      <p id="title" style="text-align: center; z-index: 1"><-- To Move --></p>
+      <p id="title" style="text-align: center; z-index: 1">P to Pause</p>
+      <p id="title" style="text-align: center; z-index: 1">M to Mute Music</p>
+
+      <div
+        id="title"
+        style="position: relative; top: 140px; text-align: center; z-index: 1">
+        ZONE01
+      </div>
     </div>
-    
-    <script src="app.js"></script>
 
-</body>
-
+    <div class="top-stats">
+      <div class="time"></div>
+      <div class="scoreboard"></div>
+      <div class="lives"></div>
+      <i class="fa-solid fa-volume-high fa-3x" id="sound"></i>
+    </div>
+    <div class="game-board">
+      <div id="pauseDiv">
+        <span id="paused">GAME PAUSED</span>
+        <span id="continue">Continue (press P)</span>
+        <span id="reset">Restart (press R)</span>
+      </div>
+      <div id="game-over">
+        <span>Game Over!</span>
+        <span id="final-score">Score:</span>
+        <span id="reset">Restart (press R)</span>
+      </div>
+      <div id="you-win">
+        <span>You Win!</span>
+        <span id="score">Score:</span>
+        <span id="time">Seconds: </span>
+        <span id="reset">Restart (press R)</span>
+      </div>
+    </div>
+  </body>
 </html>

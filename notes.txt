@@ -1,0 +1,43 @@
+Throttle gamepad -- framereate issues
+
+gameboardrect.left not working as desired for starting brick positions
+
+ad padleft outer bounds
+
+Ball doesn't always reset properly below pad
+
+translate/transform for pad movement and possibly ball,to improve performance/frame rate
+
+Use opacity instead of remove ?
+
+
+
+TODO:
+LEFT brick collision doesn't work properly, possibly right too 
+
+Added a static ball state to moveball() , may/may not want to seperate it 
+
+
+
+//FROM/FOR AUDIT
+
+Start/Pause/Continue/Restart options
+Countdown
+Lives
+Points
+framereate
+
+//Dev tools paint
+
+/*
+
+Try using the Dev Tool/performance and the option rendering with the paint ON, if possible.
+Try using the Dev Tool/performance and the option rendering with the layer ON, if possible.
+
+Can you confirm that the paint/layers is being used as little as possible?
+*/
+
+
+frontend - either use vmin/vmax or pixels
+
+frontend - issue with minimizing div horizontally

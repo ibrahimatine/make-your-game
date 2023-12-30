@@ -1,33 +1,141 @@
 body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
-    padding: 0;
-    background-image: url('asset/bri.jpg');
-    background-size: cover; /* Pour que l'image remplisse entièrement l'arrière-plan */
-    background-position: center; 
-    font-family: Arial, sans-serif; 
+    background-color: rgb(12, 0, 0);
 }
 
-#game-container {
-    position:absolute;
-    width: 700px;
-    height: 500px;
-    border: 1px solid #000;
-    top:50%;
-    left:50%;
-    background-color: #000;
-    transform: translate(-50%,-50%);
-    
+.game-board {
+    top: 150px;
+    height: 75%;
+    width: 400px;
+    border: 5px solid rgb(32, 32, 158);
+    position: absolute;
+    background-color: rgb(10, 10, 10);
+    opacity: 0;
+
 }
 
-#game-container,
-#status {
-  display: inline-block;
+.top-stats {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 20px;
+    height: 150px;
+    width: 400px;
+
+}
+
+/* all divs within top stats */
+.top-stats * {
+    color: white;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    border: 5px solid rgb(32, 32, 158);
+    background-color: rgb(10, 10, 10);
+
+}
+
+.time {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.scoreboard {
+    font-family: 'Press Start 2P', cursive;
 }
 
 
-
-.score, 
 .lives {
+    color: red;
+}
 
-    font-size: 30px;
-} 
+
+#pauseDiv {
+    top: 33%;
+    left: 10%;
+    width: 80%;
+    height: 25%;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    border: 5px solid rgb(32, 32, 158);
+    z-index: 1;
+    background-color: black;
+}
+
+#game-over {
+    position: absolute;
+    top: 33%;
+    left: 25%;
+    width: 50%;
+    height: 20%;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    display: none;
+    color: white;
+    flex-direction: column;
+    border: 2px solid rgb(32, 32, 158);
+    justify-content: space-evenly;
+    background-color: black;
+    z-index: 1;
+}
+
+
+
+#you-win {
+    position: absolute;
+    top: 33%;
+    left: 25%;
+    width: 50%;
+    height: 30%;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    display: none;
+    color: white;
+    flex-direction: column;
+    border: 2px solid rgb(32, 32, 158);
+    justify-content: space-evenly;
+    background-color: black;
+    z-index: 1;
+}
+
+.title-screen {
+    position: absolute;
+    top: 43px;
+    height: 607px;
+    width: 400px;
+    font-family: 'Press Start 2P', cursive;
+    display: block;
+    border: rgb(255, 255, 255)solid rgb(32, 32, 158);
+    color: white;
+    border: 5px solid rgb(32, 32, 158);
+    background-color: black;
+    z-index: 1;
+
+}
+
+.title-brick {
+    position: absolute;
+
+    /* border: rgb(255, 255, 255)solid rgb(255, 255, 255); */
+
+    z-index: -1;
+}
+
+/* .sound img {
+    background: red;
+    border: none;
+    width: 96%;
+} */
