@@ -30,7 +30,7 @@ let paused = false;
 const pausediv = document.getElementById("pauseDiv");
 // gameBoard.append(pausediv);
 
-//timer
+//timer**********************************************************************************************************
 let timer = 0;
 let timeDiv = document.querySelector(".time ");
 let firstTime = 0;
@@ -195,7 +195,7 @@ window.addEventListener('keydown', e => {
 
 function gameLoop() {
 
-  if (music) game_music.play()
+  if (music) game_music.play()  
   if (!music) game_music.pause()
 
   if (title_started) {

@@ -6,6 +6,7 @@ import { game_started, ballDiv, ballRadius } from "./ball.js"
 const gameBoard = document.querySelector(".game-board");
 const gameBoardRect = gameBoard.getBoundingClientRect();
 
+let animationId = null;
 
 // paddle variables
 const paddle_width = 100;
@@ -81,8 +82,12 @@ function movePaddle() {
     pad.style.transform = `translate(${pad_start.a}px)`;
     paddle.left = false;
   }
-
-  window.requestAnimationFrame(movePaddle);
+  pad.style.transform = `translateX(${pad_start.a}px)`;
+  animationId = window.requestAnimationFrame(movePaddle);
+}
+function stopPaddleAnimation() {
+  // Arrêter l'animation
+  window.cancelAnimationFrame(animationId);
 }
 
 
@@ -130,4 +135,4 @@ function movePaddleBool() {
   movePaddle();
 }
 
-export { paddle, drawPaddle, movePaddle, padCollision, pad, movePaddleBool, paddle_width, paddle_height, pad_start }
+export { paddle, drawPaddle, movePaddle, stopPaddleAnimation, padCollision, pad, movePaddleBool, paddle_width, paddle_height, pad_start }
