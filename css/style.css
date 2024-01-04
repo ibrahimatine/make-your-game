@@ -1,0 +1,133 @@
+.grid {
+  position: absolute;
+  width: 560px;
+  height: 300px;
+  border: solid 1px rgb(255, 255, 255);
+  margin-top: 100px;
+  grid-template-columns: min-content 50%;
+
+}
+
+.block {
+  justify-content: center;
+}
+
+.bg2 {
+  background-color: black;
+  color: white;
+  display: flex;
+	min-height: 100px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  
+}
+
+#counters {
+  font-family: 'Press Start 2P', cursive;
+  justify-content: center;
+}
+
+
+#text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+}
+
+#lives {
+  font-family: 'Press Start 2P', cursive;
+}
+
+#score {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 40px;
+}
+
+.test {
+  /* display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column; */
+  text-align: center;
+}
+
+.user {
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.block {
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  background-color: rgb(219, 181, 255);
+}
+
+.ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  background: url("./ball.png");
+  background-color: rgb(255, 255, 255);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.menu {
+  display: none;
+  position: fixed;
+  background-color: rgb(99, 218, 2);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  border-radius: 10px;
+  justify-content: center;
+  top: 37%;
+  right: 39.5%;
+  padding: 10px 0;
+  z-index: 2;
+  width: 350px;
+  height: 200px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.winMenu {
+  display: none;
+  position: fixed;
+  background-color: rgb(99, 218, 2);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  border-radius: 10px;
+  justify-content: center;
+  top: 37%;
+  right: 39.5%;
+  padding: 10px 0;
+  z-index: 2;
+  width: 350px;
+  height: 200px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.loseMenu {
+  display: none;
+  position: fixed;
+  background-color: rgb(99, 218, 2);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  border-radius: 10px;
+  justify-content: center;
+  top: 37%;
+  right: 39.5%;
+  padding: 10px 0;
+  z-index: 2;
+  width: 350px;
+  height: 200px;
+  font-family: 'Press Start 2P', cursive;
+}

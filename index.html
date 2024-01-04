@@ -1,74 +1,61 @@
-<!-- file is called index.html as the server automatically looks for an index.html
-page. You can use a different file name, however, you would have to make sure to include
-the file name in every url. 
--->
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Brick Breaker</title>
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" href="data:;base64,=" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Bricks</title>
-    <script src="game.js" defer type="module"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
   </head>
 
-  <body>
-    <div class="title-screen">
-      <br />
-      <h1 id="title" style="text-align: center; z-index: 1">BRICK</h1>
-      <h1 id="title" style="text-align: center; z-index: 1">BREAKER!</h1>
-      <br />
-      <br />
-
-      <br />
-      <p id="title" style="text-align: center; z-index: 1">
-        <u>Instructions</u>
-      </p>
-
-      <p id="title" style="text-align: center; z-index: 1">Enter to Start</p>
-      <p id="title" style="text-align: center; z-index: 1">Space to Play</p>
-      <p id="title" style="text-align: center; z-index: 1"><-- To Move --></p>
-      <p id="title" style="text-align: center; z-index: 1">P to Pause</p>
-      <p id="title" style="text-align: center; z-index: 1">M to Mute Music</p>
-
-      <div
-        id="title"
-        style="position: relative; top: 140px; text-align: center; z-index: 1">
-        ZONE01
-      </div>
+  <body class = "bg2">
+    <div>
     </div>
 
-    <div class="top-stats">
-      <div class="time"></div>
-      <div class="scoreboard"></div>
-      <div class="lives"></div>
-      <i class="fa-solid fa-volume-high fa-3x" id="sound"></i>
+    <div class = "test" >
+      <header>
+        <h1 class="title">Brick Breaker</h1>
+      </header>
+
+      <div id = "counters">
+        <h2 id="lives">Lives: 3</h2>
+        <h2 id="score">Score: 0</h2>
+        <h2 id="count">Timer:</h2>
+      </div>
+
+      <div id="instruction">
+        <h3 id = "text" >- Press "S" to start</h3>
+        <h3 id = "text" >- Use <- and -> to move the paddle</h3>
+        <br>
+        <h3 id = "text" >- Press "P" to pause</h3>
+        <h3 id = "text" >- Press "R" to restart</h3>
+      </div>
+
+      <div id="menu" class="menu">
+        <h3>Menu</h3>
+        Press S to unpause
+        <br /><br />
+        Press R to restart
+      </div>
+
+      <div id="winMenu" class="winMenu">
+        <h3>You Win!</h3>
+        Press R to restart
+      </div>
+
+      <div id="loseMenu" class="loseMenu">
+        <h3>You Lose!</h3>
+        Press R to restart
+      </div>
+
+      <div class="grid"></div>
+
     </div>
-    <div class="game-board">
-      <div id="pauseDiv">
-        <span id="paused">GAME PAUSED</span>
-        <span id="continue">Continue (press P)</span>
-        <span id="reset">Restart (press R)</span>
-      </div>
-      <div id="game-over">
-        <span>Game Over!</span>
-        <span id="final-score">Score:</span>
-        <span id="reset">Restart (press R)</span>
-      </div>
-      <div id="you-win">
-        <span>You Win!</span>
-        <span id="score">Score:</span>
-        <span id="time">Seconds: </span>
-        <span id="reset">Restart (press R)</span>
-      </div>
+    <div>
+
     </div>
+
+    <script src="js/brickbreaker.js"></script>
   </body>
 </html>
