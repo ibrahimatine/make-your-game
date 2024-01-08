@@ -18,35 +18,37 @@ The player can only use the keyboard to navigate the game.
   - not use canvas or frameworks
   - be implemented using plain JS/DOM and HTML only
 
-  1.  **Lancement du Jeu :**
+1.  **Launch the game:**
 
-  vous avez deux options:
+  you have two options:
 
-- Ouvrir le fichier index.html :
+- Open the index.html file:
 
-  - Localisez le fichier index.html dans le dossier du jeu.
-  - Cliquez avec le bouton droit sur le fichier et ouvrez-le avec votre navigateur web préféré.
+  - Locate the index.html file in the game folder.
+  - Right-click on the file and open it with your favourite web browser.
 
-- Utiliser l'extension Live Server :
+- Use the Live Server extension :
 
-  - Si vous préférez une solution plus dynamique, vous pouvez télécharger et installer l'extension Live Server pour votre navigateur.
-  - Après l'installation, cliquez avec le clic droit sur le fichier index.html et sélectionnez "Open with Live Server" pour démarrer le jeu ou "go live en bas".
+  - If you prefer a more dynamic solution, you can download and install the Live Server extension for your browser.
+  - After installation, right-click on the index.html file and select "Open with Live Server" to start the game or "go live below".
 
-2. **Commandes :**
-   - Utilisez les touches fléchées gauche et droite pour déplacer la raquette.
-   - Appuyez sur la barre d'espace pour lancer la balle.
-   - Pour mettre en pause le jeu, utilisez la touche "S". Appuyez à nouveau pour reprendre.
-   - Pour réinitialiser le jeu, appuyez sur la touche "R".
-3. **Objectif du Jeu :**
+2. **Commands:**
+   - Use the left and right arrow keys to move the racket.
+   - Press the space bar to launch the ball.
+   - To pause the game, use the "S" key. Press again to resume.
+   - To reset the game, press the "R" key.
+3. **Game objective:**
 
-   - Détruisez toutes les briques en rebondissant la balle avec la raquette.
+   - Destroy all the bricks by bouncing the ball with the racket.
 
-4. **Fin de la Partie :**
-   - La partie se termine lorsque toutes les vies sont épuisées ou tous les niveaux sont terminés.
-5. **Informations de Jeu :**
+4. **End of the game:**
+   - The game ends when all lives are used up or all levels are completed.
+5. **Game Information:**
 
-   - Le jeu affiche en temps réel le Score, le Temps et le Nombre de Vies restantes.
-   - Chaque partie commence avec 3 vies. Si toutes les vies sont épuisées, le jeu est réinitialisé au niveau actuel.
+   - The game displays the score, time and number of lives remaining in real time.
+   - Each game starts with 3 lives. If all lives are used up, the game is reset to the current level.
+
+Translated with DeepL.com (free version)
 
    <b><h2 align="center"> AUTHORS: </h2></b>
 
