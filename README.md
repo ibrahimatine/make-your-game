@@ -16,3 +16,10 @@ The player can only use the keyboard to navigate the game.
     - have a score board, with a timer, and lives displayed
     - not use canvas or frameworks
     - be implemented using plain JS/DOM and HTML only
+
+    <b><h2 align="center"> AUTHORS: </h2></b>
+
+<p align="center"> Mouwade <br>
+Cisall <br>
+Itine
+</p>
