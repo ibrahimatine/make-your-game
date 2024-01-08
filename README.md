@@ -48,7 +48,7 @@ The player can only use the keyboard to navigate the game.
    - The game displays the score, time and number of lives remaining in real time.
    - Each game starts with 3 lives. If all lives are used up, the game is reset to the current level.
 
-Translated with DeepL.com (free version)
+
 
    <b><h2 align="center"> AUTHORS: </h2></b>
 
