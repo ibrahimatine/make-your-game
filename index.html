@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Brick Breaker</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  </head>
+
+  <body class = "bg2">
+    <div>
+    </div>
+
+    <div class = "test" >
+      <header>
+        <h1 class="title">Brick Breaker</h1>
+      </header>
+
+      <div id = "counters">
+        <h2 id="lives">Lives: 3</h2>
+        <h2 id="score">Score: 0</h2>
+        <h2 id="count">Timer:</h2>
+      </div>
+
+      <div id="instruction">
+        <h3 id = "text" >- Press "S" to start</h3>
+        <h3 id = "text" >- Use <- and -> to move the paddle</h3>
+        <br>
+        <h3 id = "text" >- Press "P" to pause</h3>
+        <h3 id = "text" >- Press "R" to restart</h3>
+      </div>
+
+      <div id="menu" class="menu">
+        <h3>Menu</h3>
+        Press S to unpause
+        <br /><br />
+        Press R to restart
+      </div>
+
+      <div id="winMenu" class="winMenu">
+        <h3>You Win!</h3>
+        Press R to restart
+      </div>
+
+      <div id="loseMenu" class="loseMenu">
+        <h3>You Lose!</h3>
+        Press R to restart
+      </div>
+
+      <div class="grid"></div>
+
+    </div>
+    <div>
+
+    </div>
+
+    <script src="js/brickbreaker.js"></script>
+  </body>
+</html>
